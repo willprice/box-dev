@@ -27,3 +27,10 @@ Finally run the install script using the boxstarter shell by running `install.ps
 ```powershell
 Install-BoxstarterPackage -PackageName https://raw.githubusercontent.com/willprice/box-dev/master/install.ps1 -DisableReboots
 ```
+
+
+## Optional
+
+### Thinkpads
+
+* Install [ThinkVantage](https://support.lenovo.com/gb/en/solutions/ht037696) utilities.
