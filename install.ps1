@@ -129,6 +129,12 @@ If (-Not (Test-Path "HKLM:\Software\Microsoft\PolicyManager\default\WiFi\AllowWi
 }
 Set-ItemProperty -Path HKLM:\Software\Microsoft\PolicyManager\default\WiFi\AllowWiFiHotSpotReporting -Name value -Type DWord -Value 0
 
+## Use UTC time to avoid time discrepancy between linux and windows
+If (-Not (Test-Path "HKLM:\SYSTEM\CurrentControlSet\Control\TimeZoneInformation\TimeIsUniversal")) {
+    New-Item -Path HKLM:\SYSTEM\CurrentControlSet\Control\TimeZoneInformation\TimeIsUniversal | Out-Null
+}
+Set-ItemProperty -Path HKLM:\SYSTEM\CurrentControlSet\Control\TimeZoneInformation\TimeIsUniversal -Name value -Type QWord -Value 1
+
 ## Install linux subsystem for windows
 Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
 
