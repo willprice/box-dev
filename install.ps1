@@ -4,6 +4,7 @@ Disable-GameBarTips
 Disable-UAC
 Disable-BingSearch
 Set-TaskbarOptions -Size Small -Combine Always
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
 
 # Basics
 ## Web
@@ -50,6 +51,7 @@ cinst -y nsis
 ## IDEs
 
 ## Terminal emulators
+cinst -y cmder
 cinst -y conemu
 
 ## CLI
