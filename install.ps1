@@ -93,10 +93,28 @@ cinst -y golang
 ## Powershell
 cinst -y poshgit
 cinst -y pester
-cinst -y pscx
+cinst -y pscxG
 
 ## System management
 cinst -y nssm
 cinst -y procman
 cinst -y sysinternals
 cinst -y procexp
+
+## Remove crap bundled with windows
+
+@("Microsoft.3DBuilder", "Microsoft.WindowsAlarms", "Microsoft.BingFinance", "Microsoft.BingNews", 
+  "Microsoft.BingSports", "Microsoft.BingWeather", "*BubbleWitch*", "kong.com.CandyCrush*", 
+  "Microsoft.CommsPhone", "*Facebook*", "Microsoft.WindowsFeedbackHub", "Microsoft.Getstarted",
+  "Microsoft.WindowsMaps", "*disney*", "Microsoft.Messaging", "MicrosoftOfficeHub", 
+  "Microsoft.OneConnect", "Microsoft.People", "Microsoft.SkypeApp", "*Solitaire*", 
+  "Microsoft.Office.Sway", "Microsoft.ZuneMusic", "Microsoft.ZuneVideo", "Microsoft.XboxApp",
+  "Microsoft.XboxIdentityProvider") |
+  ForEach { Get-AppxPackage $_ | Remove-AppxPackage }
+
+## Install linux subsystem for windows
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
+
+## Perform windows update
+Install-WindowsUpdate -acceptEula
+
